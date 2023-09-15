@@ -1,5 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tilarna_todo_app/ui/todo_screen.dart';
 import 'package:tilarna_todo_app/util/constants.dart';
+import 'package:tilarna_todo_app/util/navigator.dart';
 
 class LockScreen extends StatefulWidget {
   const LockScreen({super.key});
@@ -52,6 +55,45 @@ class _LockScreenState extends State<LockScreen> {
                   });
                 });
               }),
+        ),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: kPad(context) * .08),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              numberButton(
+                  context,
+                  Icon(
+                    CupertinoIcons.delete_left,
+                    size: kPad(context) * .05,
+                    color: Colors.red,
+                  ), () {
+                setState(() {
+                  _code = (_code ~/ 10);
+                });
+              }),
+              numberButton(
+                  context,
+                  Text(
+                    '0',
+                    style:
+                        style(context).copyWith(fontSize: kPad(context) * 0.05),
+                  ), () {
+                setState(() {
+                  _code = (_code * 10) + 0;
+                });
+              }),
+              numberButton(
+                  context,
+                  Icon(
+                    CupertinoIcons.check_mark,
+                    size: kPad(context) * .05,
+                    color: Colors.green,
+                  ), () {
+                push(context, const TodoScreen());
+              }),
+            ],
+          ),
         )
       ],
     ));
@@ -61,7 +103,7 @@ class _LockScreenState extends State<LockScreen> {
       BuildContext context, Widget icon, void Function() onTap) {
     return IconButton(
         onPressed: onTap,
-        iconSize: kPad(context) * 2,
+        iconSize: kPad(context) * .2,
         icon: Container(
           decoration: BoxDecoration(
               shape: BoxShape.circle,
