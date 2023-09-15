@@ -12,7 +12,7 @@ Widget customAppBar(
     //
     height: kPad(context) * .25,
     width: kPad(context),
-    decoration: BoxDecoration(),
+    decoration: const BoxDecoration(),
     child: Center(
       child: SafeArea(
           child: Row(
