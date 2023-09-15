@@ -9,7 +9,7 @@ class LockScreen extends StatefulWidget {
 }
 
 class _LockScreenState extends State<LockScreen> {
-  final int _code = 1234;
+  int _code = 1234;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,6 +33,7 @@ class _LockScreenState extends State<LockScreen> {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: kPad(context) * 0.05),
             child: GridView.builder(
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: 9,
                 shrinkWrap: true,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -45,25 +46,29 @@ class _LockScreenState extends State<LockScreen> {
                         style: style(context).copyWith(
                           fontSize: kPad(context) * 0.05,
                         ),
-                      ),
-                      () {});
+                      ), () {
+                    setState(() {
+                      _code = (_code * 10) + (index + 1);
+                    });
+                  });
                 }),
           )
         ],
       ),
     );
   }
-}
 
-IconButton numberButton(
-    BuildContext context, Widget icon, void Function() onTap) {
-  return IconButton(
-      onPressed: onTap,
-      icon: Container(
-        decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            border: Border.all(color: dark.withOpacity(0.1))),
-        padding: EdgeInsets.all(kPad(context) * 0.7),
-        child: icon,
-      ));
+  IconButton numberButton(
+      BuildContext context, Widget icon, void Function() onTap) {
+    return IconButton(
+        onPressed: onTap,
+        iconSize: kPad(context) * 2,
+        icon: Container(
+          decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border.all(color: dark.withOpacity(0.1))),
+          padding: EdgeInsets.all(kPad(context) * 0.7),
+          child: icon,
+        ));
+  }
 }
