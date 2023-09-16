@@ -46,7 +46,7 @@ class _LockScreenState extends State<LockScreen> {
       builder: (context, state) {
         return Column(
           children: [
-            customAppBar(context, 'Enter the Code', Iconsax.home3,
+            customAppBar(context, 'Nhập mã Todo của bạn', Iconsax.home3,
                 Iconsax.home3, () {}, () {}),
             Expanded(
               child: Column(
@@ -131,7 +131,7 @@ class _LockScreenState extends State<LockScreen> {
                   SizedBox(
                     height: kPad(context) * .1,
                   ),
-                  blueButton(context, 'Register Instead', () {
+                  blueButton(context, 'Đăng kí Toder mới', () {
                     BlocProvider.of<LockBloc>(context)
                         .add(RegisterButtonClickedEvent(_code));
                   }),

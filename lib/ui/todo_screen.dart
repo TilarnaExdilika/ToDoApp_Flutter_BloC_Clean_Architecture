@@ -54,26 +54,26 @@ class TodoScreen extends StatelessWidget {
                           ...state.todos.map((e) => InkWell(
                                 onTap: () {
                                   bottomSheetBar(context, [
-                                    PopUpClass('Mark as Done', Iconsax.award,
+                                    PopUpClass('Đã hoàn thành', Iconsax.award,
                                         Colors.green, () {
                                       BlocProvider.of<TodoBloc>(context).add(
                                           MarkDoneEvent(e.code, e.task, e.time,
                                               e.animationIndex, 2));
                                     }),
-                                    PopUpClass('Mark as Working on it',
-                                        Iconsax.like_1, Colors.orange, () {
+                                    PopUpClass('Đang thực hiện', Iconsax.like_1,
+                                        Colors.orange, () {
                                       BlocProvider.of<TodoBloc>(context).add(
                                           MarkDoneEvent(e.code, e.task, e.time,
                                               e.animationIndex, 1));
                                     }),
                                     PopUpClass(
-                                        'Delete this Task', Iconsax.trash, dark,
+                                        'Xóa nhiệm vụ', Iconsax.trash, dark,
                                         () {
                                       BlocProvider.of<TodoBloc>(context)
                                           .add(DeleteTaskEvent(code, e.task));
                                     }),
-                                    PopUpClass('Mark as Not Completed',
-                                        Iconsax.moon, Colors.red, () {
+                                    PopUpClass('Không hoàn thành', Iconsax.moon,
+                                        Colors.red, () {
                                       BlocProvider.of<TodoBloc>(context).add(
                                           MarkDoneEvent(e.code, e.task, e.time,
                                               e.animationIndex, 0));
@@ -174,10 +174,10 @@ class TodoScreen extends StatelessWidget {
                                                     ),
                                                     Text(
                                                       e.statusIndex == 0
-                                                          ? 'Not Completed'
+                                                          ? 'Chưa xong'
                                                           : e.statusIndex == 1
-                                                              ? 'Working on it'
-                                                              : 'Done',
+                                                              ? 'Đang thực hiện'
+                                                              : 'Đã xong',
                                                       style: style(context)
                                                           .copyWith(
                                                               fontSize: kPad(
@@ -213,9 +213,8 @@ class TodoScreen extends StatelessWidget {
             top: 0,
             right: 0,
             left: 0,
-            child: customAppBar(
-                context, 'All Tasks', CupertinoIcons.left_chevron, Iconsax.add,
-                () {
+            child: customAppBar(context, 'Danh sách Toding',
+                CupertinoIcons.left_chevron, Iconsax.add, () {
               replace(
                   context,
                   BlocProvider(

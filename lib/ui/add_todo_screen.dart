@@ -40,7 +40,7 @@ class AddTodoScreen extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.symmetric(vertical: kPad(context) * .05),
                 child: Text(
-                  'Choose an animation',
+                  'Chọn hành động',
                   style: style(context).copyWith(
                       fontWeight: FontWeight.w500,
                       fontSize: kPad(context) * .04),
@@ -84,7 +84,7 @@ class AddTodoScreen extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(vertical: kPad(context) * .05),
               child: Text(
-                'Add a task',
+                'Thêm nhiệm vụ',
                 style: style(context).copyWith(
                     fontWeight: FontWeight.w400, fontSize: kPad(context) * .04),
               ),
@@ -122,7 +122,7 @@ class AddTodoScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Text(
-                        'Task Date',
+                        'Ngày tạo',
                         style: style(context).copyWith(
                           fontWeight: FontWeight.w500,
                           color: blue,
@@ -138,7 +138,7 @@ class AddTodoScreen extends StatelessWidget {
                         height: kPad(context) * .05,
                       ),
                       Text(
-                        'Status',
+                        'Tình trạng',
                         style: style(context).copyWith(
                           fontWeight: FontWeight.w500,
                           color: blue,
@@ -148,7 +148,7 @@ class AddTodoScreen extends StatelessWidget {
                         height: kPad(context) * .05,
                       ),
                       Text(
-                        'Not Complete',
+                        'Chưa hoàn thành',
                         style: style(context).copyWith(
                           fontWeight: FontWeight.w500,
                           color: Colors.redAccent,
@@ -161,13 +161,13 @@ class AddTodoScreen extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: kPad(context) * .0),
-              child: customTextField(
-                  context, _controller, 'Enter your task', (p0) {}, false),
+              child: customTextField(context, _controller,
+                  'Nhập điều bạn muốn làm !', (p0) {}, false),
             ),
             SizedBox(
               height: kPad(context) * .1,
             ),
-            blueButton(context, 'Submit', () {
+            blueButton(context, 'Xác nhận', () {
               BlocProvider.of<TodoBloc>(context)
                   .add(AddTodoEvent(code, _controller.text, state.index));
             }),
