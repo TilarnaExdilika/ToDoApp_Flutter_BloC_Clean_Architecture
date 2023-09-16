@@ -12,3 +12,7 @@ replace(context, page) {
 pop(context) {
   Navigator.pop(context);
 }
+
+popUntilFirstPage(context) {
+  Navigator.popUntil(context, (route) => route.isFirst);
+}

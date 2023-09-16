@@ -4,6 +4,11 @@ sealed class LockEvent extends Equatable {
   const LockEvent();
 }
 
+class HiveBoxOpeningEvent extends LockEvent {
+  @override
+  List<Object> get props => [];
+}
+
 class LoginButtonClickedEvent extends LockEvent {
   final int code;
 

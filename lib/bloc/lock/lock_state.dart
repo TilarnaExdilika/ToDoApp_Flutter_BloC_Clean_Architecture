@@ -9,6 +9,11 @@ class LockInitial extends LockState {
   List<Object> get props => [];
 }
 
+class HiveBoxOpeningState extends LockState {
+  @override
+  List<Object> get props => [];
+}
+
 class LoadingState extends LockState {
   @override
   List<Object> get props => [];
