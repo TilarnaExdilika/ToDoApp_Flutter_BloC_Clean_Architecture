@@ -1,10 +1,33 @@
 part of 'todo_bloc.dart';
 
-sealed class TodoState extends Equatable {
-  const TodoState();
-  
+abstract class TodoState extends Equatable {
+  final int index;
+  const TodoState(this.index);
   @override
-  List<Object> get props => [];
+  List<Object> get props => [index];
 }
 
-final class TodoInitial extends TodoState {}
+class TodoInitial extends TodoState {
+  final int index;
+  const TodoInitial(this.index) : super(0);
+
+  @override
+  List<Object> get props => [index];
+}
+
+class AnimationGridState extends TodoState {
+  const AnimationGridState(super.index);
+}
+
+class LoadedTodoListState extends TodoState {
+  final int code;
+  final List<TodoModel> todos;
+
+  const LoadedTodoListState(super.index, this.code, this.todos);
+  @override
+  List<Object> get props => [code, todos];
+}
+
+class PopState extends TodoState {
+  const PopState(super.index);
+}

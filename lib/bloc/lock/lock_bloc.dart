@@ -12,7 +12,6 @@ class LockBloc extends Bloc<LockEvent, LockState> {
   LockBloc(this._lockRepository, this._todoRepository)
       : super(HiveBoxOpeningState()) {
     on<HiveBoxOpeningEvent>((event, emit) async {
-      //
       try {
         await _lockRepository.init();
         await _todoRepository.init();
@@ -22,7 +21,6 @@ class LockBloc extends Bloc<LockEvent, LockState> {
       emit(LockInitial());
     });
 
-    // Login bloc
     on<LoginButtonClickedEvent>((event, emit) async {
       final user = await _lockRepository.authenticate(event.code);
       if (user != null) {
@@ -33,7 +31,6 @@ class LockBloc extends Bloc<LockEvent, LockState> {
       }
     });
 
-    // register bloc
     on<RegisterButtonClickedEvent>((event, emit) async {
       final result = await _lockRepository.registerUser(event.code);
       switch (result) {

@@ -48,8 +48,6 @@ class DeleteTaskEvent extends TodoEvent {
   List<Object?> get props => [code, task];
 }
 
-// for when the plus button on the add todo screen clicked
-
 class AnimatedButtonClickedEvent extends TodoEvent {
   @override
   List<Object?> get props => [];

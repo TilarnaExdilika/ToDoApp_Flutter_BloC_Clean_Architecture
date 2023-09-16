@@ -4,14 +4,11 @@ import 'package:tilarna_todo_app/models/lock_model.dart';
 class LockRepository {
   late Box<LockModel> _lock;
 
-// create/open the box for lock model
   Future<void> init() async {
     Hive.registerAdapter(LockModelAdapter());
     _lock = await Hive.openBox<LockModel>('lock_box');
   }
 
-  // for registing the code for the particular user...
-  // _lock.add(LockModel(code)); will be called if successful ? return failure
   Future<RegisterResponse> registerUser(final int code) async {
     final alreadyExists = _lock.values.any((element) => element.code == code);
     if (alreadyExists) {
@@ -25,7 +22,6 @@ class LockRepository {
     }
   }
 
-  //for authenting login the User using the code...
   Future<int?> authenticate(final int code) async {
     final success = await _lock.values.any((element) => element.code == code);
     if (success) {
@@ -36,5 +32,4 @@ class LockRepository {
   }
 }
 
-// for getting a bool response from the function calling...
 enum RegisterResponse { success, failure, alreadyExists }
